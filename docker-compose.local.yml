@@ -27,7 +27,7 @@ services:
   # Имя и описание контейнера с бэкендом:
   backend:
     # Из какого Dockerfile собирать образ для этого контейнера:
-    image: kittygram_backend:latest
+    build: ./backend/
     env_file: .env
     # Какие контейнеры нужно запустить до старта этого контейнера:
     depends_on:
@@ -38,12 +38,12 @@ services:
 
   # Имя третьего контейнера. Это контейнер с фронтендом:
   frontend:
-    image: kittygram_frontend:latest
+    build: ./frontend/
     volumes:
       - app:/app/build
 
   gateway:
-    image: kittygram_gateway:latest
+    build: ./nginx/
     ports:
       - "80:80"
     depends_on:
