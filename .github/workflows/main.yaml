@@ -160,15 +160,7 @@ jobs:
             sed -i "s|kittygram_gateway:latest|${DOCKER_USERNAME}/kittygram_gateway:latest|g" docker-compose.production.yml
             docker compose -f docker-compose.production.yml down
             docker compose -f docker-compose.production.yml pull
-            docker compose -f docker-compose.production.yml up -d postgres
-            sleep 10
-            docker compose -f docker-compose.production.yml up -d frontend
-            sleep 10
-            docker compose -f docker-compose.production.yml up -d backend
-            sleep 10
-            docker compose -f docker-compose.production.yml exec -T backend python manage.py migrate
-            docker compose -f docker-compose.production.yml exec -T backend python manage.py collectstatic --no-input
-            docker compose -f docker-compose.production.yml up -d gateway
+            docker compose -f docker-compose.production.yml up
 
   telegram-notify:
     name: Send Telegram notification
