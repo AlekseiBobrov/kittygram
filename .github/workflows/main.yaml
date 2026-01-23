@@ -124,8 +124,8 @@ jobs:
       - name: Copy files to server
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: "docker-compose.production.yml"
           target: "/home/kittygram"
@@ -133,8 +133,8 @@ jobs:
       - name: Create .env file on server
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
             cat > /home/kittygram/.env << EOF
